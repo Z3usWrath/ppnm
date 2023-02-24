@@ -1,0 +1,9 @@
+sqrt2^2 = 2 (should equal 2)
+Fifth_Power2^5 = 2 (should equal 2)
+E^PI = approximatley 23.1406926327793
+PI^E = approximately 22.459157718361
+gamma(1) = 0.999999989064903
+gamma(2) = 0.999999989064903
+gamma(3) = 1.99999997812981
+gamma(4) = 5.99999993438942
+gamma(10) = 362879.997652016
