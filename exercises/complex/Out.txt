@@ -1,8 +1,7 @@
-√(-1) = 6.12e-17+1i
-We recieved the sqrt of -1 False 
-√(i) = 0.707+0.707i
+After checking we get √(i) = 0.707+0.707i
 exp(i) = 0.54+0.841i
-exp(i*pi) = -1+1.22e-16i
-exp(i^i) = 0.208+0i
+After checking we get exp(i*pi) = -1+1.22e-16i
+exp(i^i) = 0.208+0i = Exp(-Pi/2)
 log(i) = 0+1.57i
 sin(i*pi) = 0+11.5i
+After checking we get √(-1)=±i
