@@ -1,0 +1,28 @@
+nterms is =200000000 nthreads is 1
+Start calculating the harmonic series
+Adding the results
+the total sum is 19.6910435919144
+real 0.60
+user 0.34
+sys 0.02
+nterms is =200000000 nthreads is 2
+Start calculating the harmonic series
+Adding the results
+the total sum is 19.6910435919123
+real 0.46
+user 0.62
+sys 0.00
+nterms is =200000000 nthreads is 3
+Start calculating the harmonic series
+Adding the results
+the total sum is 19.691043591912
+real 0.35
+user 0.59
+sys 0.02
+nterms is =200000000 nthreads is 4
+Start calculating the harmonic series
+Adding the results
+the total sum is 19.691043591913
+real 0.26
+user 0.43
+sys 0.02
