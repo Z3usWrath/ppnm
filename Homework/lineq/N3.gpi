@@ -1,0 +1,17 @@
+set terminal svg
+set key bottom right
+set output "N^3.svg"
+set xlabel "N"
+set ylabel "real time (seconds)"
+set tics out
+set xzeroaxis
+set yzeroaxis
+set samples 800
+
+n3(x) = A*x**3+C
+fit n3(x) "out.times.data" using 1:2 via "start.par"
+
+
+plot \
+"out.times.data" using ($1+1):($2) with points pointtype 4 title "messured time" \
+, n3(x) t "Fit to A*n^3+C"

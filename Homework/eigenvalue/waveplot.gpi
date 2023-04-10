@@ -1,0 +1,12 @@
+set terminal svg
+set output "waveplot.svg"
+set key bottom right
+set xlabel "r (bohr radii)"
+set ylabel "Psi"
+set xzeroaxis
+set yzeroaxis
+set samples 1600
+
+
+plot \
+"wave.data" using ($1+1):($2) with points pointtype 4 title "ground state radial function" \

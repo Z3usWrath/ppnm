@@ -21,7 +21,7 @@ factorials.data : Makefile
 	echo 3 6 >>$@
 	echo 4 24 >>$@
 	echo 5 120 >>$@
-	echo 6 $(echo '6*120' | bc) >>$@
+	echo 6 720 >>$@
 
 main: main.exe sfuns.dll
 	mkbundle -o $@ --simple $^
