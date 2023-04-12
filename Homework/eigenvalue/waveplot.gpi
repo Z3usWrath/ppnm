@@ -2,11 +2,14 @@ set terminal svg
 set output "waveplot.svg"
 set key bottom right
 set xlabel "r (bohr radii)"
-set ylabel "Psi"
+set ylabel "|{/Symbol Y}|^2"
 set xzeroaxis
 set yzeroaxis
-set samples 1600
+set samples 800
 
 
 plot \
-"wave.data" using ($1+1):($2) with points pointtype 4 title "ground state radial function" \
+"wave.data" using ($1):($2)**2 index 0 with points pointtype 4 title "Lowest eigenvalue", \
+(x*(2*exp(-x)))**2 with lines title "n = 1 reduced wave function probability", \
+(x*(1/sqrt(2))*(1-x/2)*exp(-x/2))**2 with lines title "n = 2 reduced wave function probability", \
+"wave.data" using ($1):($2)**2 index 1 with points pointtype 4 title "Second Lowest eigenvalue" \

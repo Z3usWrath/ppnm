@@ -21,8 +21,8 @@ public static class main{
 	}		
 
 	public static int Main(string[] args){
-		int n = 4;
-		int m = 4;
+		int n = 3;
+		int m = 3;
 
 		foreach(var arg in args){
 			var words = arg.Split(":");
@@ -30,7 +30,7 @@ public static class main{
 			if(words[0] == "-M") n = int.Parse(words[1]);
 		}
 
-		var rand = new Random(132);
+		var rand = new Random();
 		var b = RandVector(n,rand);
 		matrix A = MatGen(n,m,rand);
 		WriteLine("The Matrix is:");
@@ -51,15 +51,19 @@ public static class main{
 		var x = QRGS.solve(Q,R,b);
 		WriteLine("The vector which solves the set of linear equations is:");
 		x.print();
-		vector c = A*x;
+		vector c = ((Q)*(R))*(x);
 		WriteLine("Multiplying A * x and checking if Ax = b we obtain:");
 		c.print();
+		for(int i = 4; i < 4; i++){
+			if(c[i] == b[i])
+				WriteLine("We are good");
+		}
 
 		matrix B = QRGS.inverse(Q,R);
 		WriteLine("The inverse of A is");
 		B.print();
 		WriteLine("We check that AA^-1 is indeed the identity:");
-		((A)*(B)).print();
+		((B)*(A)).print();
 
 		return 0;
 	}

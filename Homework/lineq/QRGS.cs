@@ -19,16 +19,14 @@ public static class QRGS{
       }
 
    public static vector solve(matrix Q, matrix R, vector b){
-	   
 	   vector y = Q.T*b;
-	   for(int i = y.size-1; i >= 0; i--){
+	   for(int i = y.size - 1; i >= 0; i--){
 		   double sum = 0;
 		   for(int j = i + 1; j < y.size; j++){
 			sum += R[i,j]*y[j];
 		   }
 		   y[i] = (y[i] - sum)/R[i,i];
 	   }
-	   WriteLine("Left Solve");
 	   return y;
    }
 
@@ -41,17 +39,16 @@ public static class QRGS{
 }
 
    public static matrix inverse(matrix Q,matrix R){
-	   matrix A_inverse = new matrix(Q.size1,Q.size1);
+	   matrix A_inverse = new matrix(Q.size2,Q.size1);
 	   // initialize a vector
-	   vector v = new vector(R.size1);
+	   vector v = new vector(Q.size1);
 	   for(int i = 0; i < R.size1; i++){
 		   v[i] = 0;
 	   }
 	   // solve for the e_i vector
-	   for(int i=0; i < R.size1; i++){
+	   for(int i=0; i < Q.size1; i++){
 		   v[i] = 1;
 		   A_inverse[i] = solve(Q,R,v);
-		   WriteLine("In the inverse");
 		   v[i] = 0;
 	   }
 	   return A_inverse;
