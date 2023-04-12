@@ -3,8 +3,8 @@ using static System.Console;
 using static System.Math;
 
 public static class Fit{
-
-	static (vector, matrix) lsfit(Func<double,double>[] fs, vector x, vector y, vector dy){
+	
+	public static (vector, matrix) lsfit(Func<double,double>[] fs, vector x, vector y, vector dy){
 		
 		int n = x.size , m = fs.Length;
 		var A = new matrix (n,m);
