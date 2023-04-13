@@ -4,7 +4,7 @@ using static System.Math;
 
 public static class Fit{
 	
-	public static (vector, matrix) lsfit(Func<double,double>[] fs, vector x, vector y, vector dy){
+	public static (vector, matrix, vector) lsfit(Func<double,double>[] fs, vector x, vector y, vector dy){
 		
 		int n = x.size , m = fs.Length;
 		var A = new matrix (n,m);
@@ -17,7 +17,13 @@ public static class Fit{
 		vector c = QRGS.solve(Q, R, b);
 		var inv_A = QRGS.inverse(Q,R);
 		var S = inv_A * inv_A.T;
-		return(c,S);
+		// adding the covariance calc
+		var delta_c = new vector(m);
+		for(int i = 0; i < m; i++){
+			delta_c[i] = Sqrt(S[i,i]);
+		}
+		return(c, S, delta_c);
+
 	}
 }
 

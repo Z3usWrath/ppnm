@@ -4,13 +4,24 @@ using static System.Console;
 
 public static class main{
 
-
-	public static (double, double) HalfTime(matrix S, vector c)
+	public static (double, double) HalfTime(matrix S, vector c, vector delta_c)
 	{
-		double T = Log(2)/(-c[0]);
-		double error = Log(2)*Sqrt(S[0,0])/Pow((c[0]),2);
-		return (T, error);
+   		double T = Log(2)/(-c[0]);
+		double d_c = delta_c[0];
+    		double delta_c_term = Log(2) * Sqrt(S[0,0]) / Pow(c[0], 2);
+    		double delta_c_sum = 0.0;
+
+    		for (int i = 0; i < c.size; i++)
+   		{
+        		delta_c_sum += Pow(Log(2) * Sqrt(S[0,0]) * delta_c[i] / Pow(c[0], 3), 2);
+   		}
+
+    		double error = Sqrt(Pow(d_c * delta_c_term, 2) + delta_c_sum);
+
+    		return (T, error);
 	}
+
+
 
 	public static int Main(string[] args){
 		
@@ -53,7 +64,7 @@ public static class main{
 			dy[i] = dy[i] / y[i];
 			y[i] = Log(y[i]);
 		}
-		var (c,S) = Fit.lsfit(fs,x,y,dy);
+		var (c, S, delta_c) = Fit.lsfit(fs,x,y,dy);
 		double dx = (end-start)/samples;
 		//setting the upper and lower limitis
 		var c_lower = c.copy();
@@ -77,13 +88,14 @@ public static class main{
 			WriteLine($"{dx*i} {Exp(fit)} {Exp(fit_lower)} {Exp(fit_upper)}");
 		}
 		// calculating the halflife time
-		var (halfTime, error) = HalfTime(S,c);
+		// calculating the halflife time
+		var (halfTime, error) = HalfTime(S, c, delta_c);
 		WriteLine($"The half time is: {halfTime} +- {error} days");
-		WriteLine($"Wikipedia model gives the value of: 3.6319(23) days");
-		WriteLine("It seems that it dosen't it dosen't coincide with Wiki, I hope that is correct");
-
-
-
+		WriteLine($"The modern value is 3.6319(23) days, according to Wikipedia.");
+		if (Abs(halfTime - 3.6319) < error)
+    			WriteLine("The calculated value agrees with the modern value within the estimated uncertainty.");
+		else
+	    		WriteLine("The calculated value does not agree with the modern value within the estimated uncertainty.");
 
 
 		return 0;
