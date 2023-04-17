@@ -29,48 +29,12 @@ public static class main{
 			if(words[0] == "-n") n = int.Parse(words[1]);
 			if(words[0] == "-m") m = int.Parse(words[1]);
 		}
-		WriteLine($"n={n} m={m}");
-
 		var rand = new Random();
 		var b = RandVector(n,rand);
 		matrix A = MatGen(n,m,rand);
-		WriteLine("The Matrix is:");
-		A.print();
-		WriteLine("The Vector b is:");
-		b.print();
 
 		(matrix Q, matrix R) = QRGS.decomp(A);
-		WriteLine("The right Triangular matrix is:");
-		R.print();
-		WriteLine("Our Q matrix in this decomposition is:");
-		Q.print();
-		WriteLine("{Q^T}Q = Identity");
-		((Q.T)*Q).print();
-		WriteLine("Checking that QR = A");
-		((Q)*(R)).print();
-		
-		var x = QRGS.solve(Q,R,b);
-		WriteLine("The vector which solves the set of linear equations is:");
-		x.print();
-		vector c = ((Q)*(R))*(x);
-		WriteLine("Multiplying A * x and checking if Ax = b we obtain:");
-		c.print();
-		for(int i = 4; i < 4; i++){
-			if(c[i] == b[i])
-				WriteLine("We are good");
-		}
-
-		matrix B = QRGS.inverse(Q,R);
-		WriteLine("The inverse of A is");
-		B.print();
-		WriteLine("We check that AA^-1 is indeed the identity:");
-		((B)*(A)).print();
-	
 		return 0;
 	}
-
-
-
-
 
 }

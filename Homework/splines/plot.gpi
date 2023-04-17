@@ -1,0 +1,13 @@
+set terminal svg
+set key bottom right
+set output "plot.svg"
+set xlabel "x"
+set ylabel "y"
+set tics out
+set xzeroaxis
+set yzeroaxis
+set samples 800
+
+plot \
+"plot.data" using ($1):($2) index 1 with points pointtype 4 title "Linear Interpulated points" \
+, "plot.data" using ($1):($2) index 0 with points pointtype 3 title "The tabulated points" \
