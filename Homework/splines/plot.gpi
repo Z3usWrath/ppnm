@@ -1,5 +1,5 @@
 set terminal svg
-set key bottom right
+set key left top
 set output "plot.svg"
 set xlabel "x"
 set ylabel "y"
@@ -7,7 +7,11 @@ set tics out
 set xzeroaxis
 set yzeroaxis
 set samples 800
+set xrange [-3:3]
 
 plot \
-"plot.data" using ($1):($2) index 1 with points pointtype 4 title "Linear Interpulated points" \
-, "plot.data" using ($1):($2) index 0 with points pointtype 3 title "The tabulated points" \
+"plot.data" using ($1):($2) index 0 with points pointtype 4 title "Linearly Interpulated points" \
+, "plot.data" using ($1):($2) index 1 with points pointtype 2 title "Tabulated points" \
+, 1/(x**2+0.5) with lines title "Underlying function" \
+, sqrt(2)*(atan(x/(0.5*sqrt(2)))-atan(-3/(0.5*sqrt(2)))) with lines title "analytical intergral" \
+, "plot.data" using ($1):($2) index 2 with points pointtype 6  title "Linearly integrated points" 

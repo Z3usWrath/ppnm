@@ -1,0 +1,15 @@
+set terminal svg
+set output "plot_b.svg"
+set key bottom right
+set xlabel "x"
+set ylabel "y"
+set xzeroaxis
+set yzeroaxis
+set samples 800
+
+
+plot \
+'plot.data' using (1/$2)*cos($1):(1/$2)*sin($1) index 2 with lines title 'Circular motion {/Symbol e} = 0' ,\
+'plot.data' using (1/$2)*cos($1):(1/$2)*sin($1) index 3 with lines title '' ,\
+'plot.data' using (1/$2)*cos($1):(1/$2)*sin($1) index 4 with lines title '3'
+#'plot.data' using (1/$2)*cos($1):(1/$2)*sin($1) index 3 with lines title '1' , 'plot.data' using (1/$2)*cos($1):(1/$2)*sin($1) index 4 with lines title '2' , 'plot.data' using (1/$2)*cos($1):(1/$2)*sin($1) index 5 with lines title '3' 

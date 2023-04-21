@@ -9,8 +9,8 @@ public static class main{
 		
 		//initialize some values
 		int data_length = 10;
-		double start = -2.5;
-		double end = 2.5;
+		double start = -5;
+		double end = 5;
 		double dx = (end - start)/data_length;
 
 		// Our linear function
@@ -27,11 +27,11 @@ public static class main{
 		}
 
 		dx = (end - start) / spline_points;
-		WriteLine("\nCalculating the spline points\n");
+		WriteLine("\n");
 		for(int i = 0; i < spline_points; i++){
                         WriteLine($"{dx*i + start}, {splines.linterp(x,y,dx*i + start)}");
                 }
-		WriteLine("\nCalculating the integral of the spline points\n");
+		WriteLine("\n");
 		for(int i = 0; i < spline_points; i++){
                         WriteLine($"{dx*i + start}, {splines.linterpInteg(x,y,dx*i + start)}");
                 }
