@@ -6,6 +6,7 @@ set ylabel "y"
 set xzeroaxis
 set yzeroaxis
 set samples 800
+set size ratio 1
 
 
 plot \

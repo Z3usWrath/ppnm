@@ -1,0 +1,13 @@
+set terminal svg
+set output "plot_err_func.svg"
+set key bottom right
+set xlabel "x"
+set ylabel "y"
+set xzeroaxis
+set yzeroaxis
+set samples 800
+
+
+plot \
+"plot.data" using ($1):($2) index 0 with points pointtype 4 title "The error function"
+

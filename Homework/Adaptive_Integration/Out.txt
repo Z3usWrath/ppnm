@@ -1,0 +1,9 @@
+The intgral from 0 to 1 of f(x) = √(x) is 0.666953909054655
+The intgral from 0 to 1 of f(x) = 1/√(x) is 1.99996150007805
+The intgral from 0 to 1 of f(x) = 4/(1-x^2) is 77.4000787450215
+The intgral from 0 to 1 of f(x) = ln(x)/√(x) is -3.99991705899915
+
+The intgral from 0 to 1 of using CC integration of f(x) = 1/√(x) is 1.99999201046432
+
+The intgral from 0 to 1 using CC integration of f(x) = ln(x)/√(x) is -3.99987385646141
+

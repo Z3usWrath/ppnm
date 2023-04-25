@@ -47,7 +47,7 @@ public static class main{
 		//part B Homework
 		
 		a = 0;
-		b = 10 * PI;
+		b = 100 * PI;
 		
 		double epsilon = 0;
 		Func<double, vector, vector> two_bodies_f = delegate(double t, vector y)
@@ -86,7 +86,7 @@ public static class main{
                 var ys_5 = new genlist<vector>();
                 ya[0] = 1;
                 ya[1] = -0.5;
-		epsilon = 1e-2;
+		epsilon = 1e-1;
                 ODE.driver(two_bodies_f,a,ya,b,acc:acc,eps:eps,h:h,xlist:xs_5,ylist:ys_5);
                 for (int i = 0; i < xs_5.size; i++){
                         WriteLine($"{xs_5[i]} {ys_5[i][0]} {ys_5[i][1]}");
