@@ -1,0 +1,14 @@
+set terminal svg
+set key top right
+set output "qrnd.svg"
+set xlabel "N"
+set ylabel "error"
+set tics out
+set xzeroaxis
+set yzeroaxis
+set samples 800
+
+
+plot \
+"qrnd.data" using ($1):($3) with points pointtype 4 title "Error of the qrnd function" \
+, 1/sqrt(x) with lines title "1/√(N)"
