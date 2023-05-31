@@ -4,8 +4,9 @@ using static System.Console;
 
 public static class main{
 
-	public static vector Aux(vector E,double rmin,double rmax,double acc = 1e-2, double eps = 1e-2){
+	public static vector Aux(double E,double rmin,double rmax,double acc = 1e-2, double eps = 1e-2){
 
+		WriteLine("in the aux");
 		double h = 0.01;
 		vector ya = new vector(2);
 		ya[0] = (rmin - rmin * rmin);
@@ -15,30 +16,27 @@ public static class main{
 		var ys = new genlist<vector>();
 
 		Func<double,vector,vector> f = delegate(double x, vector y){
-			return new vector(y[1], -2 * E[0] * y[0] -2 * y[0]/x);
+			return new vector(y[1], -2 * E * y[0] -2 * y[0]/x);
 		};
-
-		var y_0 = new vector(2);
+		//for "using the variables.."
+		var y0 = new vector(2);
 		var y_err = new vector(2);
-		y_0 = y_err;
-		(y_0, y_err) = ODE.driver(f,rmin,ya,rmax,acc:acc,eps:eps,h:h,xlist:xs,ylist:ys);
-		int n = ys.size;
-		ys[n - 1][0] += - rmax + rmax * rmax;
-		WriteLine($"the first value of ys is {ys[n-1][0]} the second {ys[n-1][1]}");
-		return ys[n - 1];	
+		y0 = y_err;
+		(y0, y_err) = ODE.driver(f,rmin,ya,rmax,acc:acc,eps:eps,h:h,xlist:xs,ylist:ys);
+		return y0;
 	}
 
 	public static int Main(string[] args){
 
 		bool partA = false;
 		double rmin = 1.0, rmax = 8.0;
-		//var xs = new genlist<double>();
-		//var ys = new genlist<vector>();
-		//vector ya = new vector(2);
+		vector E0 = new vector(1);
+		E0[0] = -2;
+		
+		
 		//ya[0] = rmin - rmin * rmin;
+		
 		//ya[1] = 1.0 - 2 * rmin;
-
-		//vector E0 = new vector(-1.0);		
 
 		foreach(var arg in args){
 			var words = arg.Split(":");
@@ -72,14 +70,17 @@ public static class main{
 		}
 
 		else{
-			vector E = new vector(1);
-			vector answer = Aux(E, rmin, rmax);
-			//Func<vector, vector> M
-			//vector result = Roots.newton((vector E) => Aux(E, rmin, rmax, acc, eps), new double[] {-1.0});
-			//double E0 = result[0];
-			//WriteLine($"E0 = {E0}");	
-
-			//WriteLine($"This is the aux func soltion for E = -1 {Aux(E0[0], rmin, rmax, acc ,eps)[0]}");
+			Func<vector,vector> M = delegate(vector E){
+				var v = new vector(2);
+				v[0] = rmax*Exp(-Sqrt(-2*E[0])*rmax);
+				v[1] = (1-rmax*Sqrt(-2*E[0]))*Exp(-Sqrt(-2*E[0])*rmax);
+				return Aux(E[0],rmin,rmax);
+			};
+			//var Energy = new vector(1);
+			//double evals;
+			var result = Roots.newton(M,E0);
+			var Energy = result[0];
+			WriteLine($"The answer is {Energy}");
 		}
 
 

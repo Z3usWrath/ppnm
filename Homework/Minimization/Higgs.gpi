@@ -1,0 +1,13 @@
+set terminal svg
+set output "Higgs.svg"
+set key bottom right
+set xlabel "E"
+set ylabel "F"
+set xzeroaxis
+set yzeroaxis
+set samples 1600
+
+
+plot \
+"higgs.data" using ($1):($2):($3) index 0 with yerrorbars title "The Higgs raw data" \
+,"fit.data" using ($1):($2) index 0 with lines title "Quazi Newton fit"

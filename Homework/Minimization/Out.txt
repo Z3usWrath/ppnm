@@ -1,0 +1,7 @@
+The minimum of Rosenbrock's valley function was found at x = 1.00008827596918 y = 1.00026363678565 it took 26 steps to achieve the result
+The analytic solution is: (1,1)
+The minimum of Himmelblau's was found at x = 2.99998702130982 y = 2.00000057714076 it took 9 steps to achieve the result
+The analytic solution is: (3,2)
+There are more but I chose that one
+Enter part B
+The mass is 125.972296778163, Gamma is 2.08462663629493, And A is 9.86855949335682, it took 99 steps to solve

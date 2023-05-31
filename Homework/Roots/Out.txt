@@ -1,1 +1,0 @@
-the first value of ys is 57.130378961672 the second -0.189938770678745
