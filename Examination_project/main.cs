@@ -10,8 +10,8 @@ public static class main{
 		vector start = new vector(-2.0,-2.0);
 		vector end = new vector(2.0,2.0);
 		//double px , py;
-		int nx = 20;
-		int ny = 20;
+		int nx = 100;
+		int ny = 100;
 		//int spline_points = 3;
 		double px,py;
 		double dx = (end[0] - start[0])/(nx+1);

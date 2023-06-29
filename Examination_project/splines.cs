@@ -14,22 +14,6 @@ public static class splines {
 		return i;
 	}
 
-	public static double linterpInteg(double[] x, double[] y, double z){
-
-		//We integrate a linear function so we intgerate(a*x+b) => a/2*x^2+b*x
-		//I chose c = 0 because it is a definite integral
-		double Integral_sum = 0;
-		// Upper integraition boundry, it returnes the right side of the section
-		int Max = binsearch(x, z);
-		for(int i = 0; i < Max; i++) Integral_sum += (y[i] * (x[i+1] - x[i]));
-		// Adding the contibuation of the constants
-		Integral_sum += (y[Max] - y[0])/2;
-		// Adding the contribution of the quadrature
-		//Integral_sum += y[Max] * (z - x[Max]) + p(x, y, Max)/2 * Pow(z-x[Max],2);
-
-		return Integral_sum;
-	}
-
 	public static double Interpolate(double[] x, double[] y, matrix F, double px, double py)
 	{
 		int n = x.Length;
