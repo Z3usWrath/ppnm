@@ -50,7 +50,7 @@ public static class splines {
 		double f10 = F[i + 1, j];
 		double f11 = F[i + 1, j + 1];
 
-		WriteLine($"This is f00 {f00} and f01 {f01} and f10 {f10} and f11 {f11}");
+		//WriteLine($"This is f00 {f00} and f01 {f01} and f10 {f10} and f11 {f11}");
 		// Perform bi-linear interpolation
 		double dx = (px - x0) / (x1 - x0);
 		double dy = (py - y0) / (y1 - y0);

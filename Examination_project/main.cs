@@ -12,15 +12,26 @@ public static class main{
 		//double px , py;
 		int nx = 20;
 		int ny = 20;
+		//int spline_points = 3;
 		double px,py;
-		double dx = (end[0] - start[0])/nx;
-		double dy = (end[1] - start[1])/ny;
+		double dx = (end[0] - start[0])/(nx+1);
+		double dy = (end[1] - start[1])/(ny+1);
 
-		//var xs = new genlist<double>();
-		//var ys = new genlist<double>();
-		//var Fs = new genlist<double>();
-		//Chose some random func, similar to HW
-		Func<vector,double> f = delegate(vector d){return (1/(Pow(d[0],2) + Pow(d[1],2) + 1));};
+		foreach(var arg in args){
+			var words = arg.Split(":");
+			if(words[0] == "-startx") start[0] = double.Parse(words[1]);
+			if(words[0] == "-endx") end[0] = double.Parse(words[1]);
+			if(words[0] == "-starty") start[1] = double.Parse(words[1]);
+			if(words[0] == "-endy") end[1] = double.Parse(words[1]);
+			//if(words[0] == "-spline_points") spline_points = int.Parse(words[1]);
+			if(words[0] == "-px") py = double.Parse(words[1]);
+			if(words[0] == "-py") py = double.Parse(words[1]);
+
+		}
+
+		//Chose some random func..
+		//Func<vector,double> f = delegate(vector d){return (1/(Pow(d[0],2) + Pow(d[1],2) + 1));};
+		Func<vector,double> f = delegate(vector d){return (Pow(d[0],2) + Pow(d[1],2) + 1);};
 		double[] x = new double[nx + 1];
 		double[] y = new double[ny + 1];
 		matrix F = new matrix(nx + 1, ny + 1);
@@ -36,21 +47,12 @@ public static class main{
 		}
 
 		WriteLine("\n");
-
+		double ans;
 		for(int i = 0; i <= nx; i++){
-			x[i] = dx * i + start[0];
 			for(int j = 0; j <= ny; j++){
-				if(i ==0){
-				       px = x[i];
-				       continue;
-				}
-				if(j ==0){
-					py = y[j];
-					continue;
-				}
-				px = (x[i] + x[i - 1])/2;
-				py = (y[j] + y[j - 1])/2;
-				double ans = splines.Interpolate(x,y,F,px,py);
+				px = (x[i]);
+				py = (y[j]);
+				ans = splines.Interpolate(x,y,F,px,py);
 				WriteLine($"{x[i]} {y[j]} {ans}");
 			}
 		}
@@ -58,40 +60,14 @@ public static class main{
 
 
 		/*
-		//initialize some values
-		vector start = new vector(-5,-5);
-		vector end = new vector(5,5);
-		//int spline_points = 100;
-		int nx = 10;
-		int ny = 10;
-		double px = 0, py = 0;
-		double dx = (end[0] - start[0])/nx;
-		double dy = (end[1] - start[1])/ny;
-		var xs = new genlist<double>();
-		var ys = new genlist<double>();
-		var Fs = new genlist<double>();
-
-		// need to add users list
-		foreach(var arg in args){
-		var words = arg.Split(":");
-		if(words[0] == "-startx") start[0] = double.Parse(words[1]);
-		if(words[0] == "-endx") end[0] = double.Parse(words[1]);
-		if(words[0] == "-starty") start[1] = double.Parse(words[1]);
-		if(words[0] == "-endy") end[1] = double.Parse(words[1]);
-		//		if(words[0] == "-spline_points") spline_points = int.Parse(words[1]);
-		if(words[0] == "-px") py = double.Parse(words[1]);
-		if(words[0] == "-py") py = double.Parse(words[1]);
-
-		}
-		/*
-		var separators = new char[] { ' ', '\t' };
-		var options = StringSplitOptions.RemoveEmptyEntries;
-		string line;
-		int sum = 0;
-		do
-		{
-		sum++;
-		line = Console.ReadLine();
+		   var separators = new char[] { ' ', '\t' };
+		   var options = StringSplitOptions.RemoveEmptyEntries;
+		   string line;
+		   int sum = 0;
+		   do
+		   {
+		   sum++;
+		   line = Console.ReadLine();
 		//throw new ArgumentException($"After sum++ and line, {sum}");
 		if (line == null) break;
 		string[] words = line.Split(separators, options);
@@ -108,13 +84,6 @@ public static class main{
 		if(sum > 10) throw new ArgumentException("Too many times");
 		} while (true);
 
-
-		double[] x = new double[nx + 1];
-		double[] y = new double[ny + 1];
-		double[,] F = new double[nx + 1,ny + 1];
-
-		Func<vector,double> f = delegate(vector d){return (1/(Pow(d[0],2)) + 1/(Pow(d[1],2) + 1.0));};
-
 		/*for(int i = 0; i <= nx; i++){
 		xs.add(dx * i + start[0]);
 		ys.add(dy * j + start[1]);
@@ -125,17 +94,11 @@ public static class main{
 		for(j = 0; j <= ny; j++){
 		x[i] = dx * i + start[0];
 		y[j] = dy * j + start[1];
-		//px = x[i]; 
-		//py = y[j];
 
-		F[i,j] = (splines.Interpolate(x,y,F,px,py));
-		//WriteLine($"{x[i]}, {y[j]}, {F[i,j]}");
-		//WriteLine($"This is the result {F[i,j]}");
 		}
 		}
-		//dx = (end - start) / spline_points;
 		*/
-		WriteLine("Wish me luck :)");
+		WriteLine("\n Wish me luck :)");
 		return 0;
 	}
 }

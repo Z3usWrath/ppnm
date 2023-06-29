@@ -26,9 +26,9 @@ plot.gpi :
 		set samples 1600 \n\
 		set dgrid3d 10,10 \n\
 		set hidden3d \n\
-		splot 'plot.data' using (\$$1):(\$$2):(\$$3) index 0 with lines title 'Linearly Interpulated points',\
-		'plot.data' using (\$$1):(\$$2):(\$$3) index 1 with point pointtype 2 title 'Graph',\
-		((x**2+y**2+1)) title 'the func' \n\
+		splot "plot.data" using (\$$1):(\$$2):(\$$3) index 0 with lines title "Linearly Interpulated points",\n\\
+		"plot.data" using (\$$1):(\$$2):(\$$3) index 1 with lines title 'Graph',\n\
+		,(5/(x**4+y**4+1) + 7 * x *y) title 'the func' \n\
 		" > $@
 
 
