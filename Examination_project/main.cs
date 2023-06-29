@@ -10,8 +10,8 @@ public static class main{
 		vector start = new vector(-2.0,-2.0);
 		vector end = new vector(2.0,2.0);
 		//double px , py;
-		int nx = 100;
-		int ny = 100;
+		int nx = 20;
+		int ny = 20;
 		//int spline_points = 3;
 		double px,py;
 		double dx = (end[0] - start[0])/(nx+1);
@@ -31,73 +31,57 @@ public static class main{
 
 		//Chose some random func..
 		//Func<vector,double> f = delegate(vector d){return (1/(Pow(d[0],2) + Pow(d[1],2) + 1));};
-		Func<vector,double> f = delegate(vector d){return (Pow(d[0],2) + Pow(d[1],2) + 1);};
+		Func<vector,double> f = delegate(vector d){return (1/(Pow(d[0],2) + Pow(d[1],2) + 1.0));};
 		double[] x = new double[nx + 1];
 		double[] y = new double[ny + 1];
 		matrix F = new matrix(nx + 1, ny + 1);
 		//initializing x and y and F values
+		double ans;
 		for(int i = 0; i <= nx; i++){
 			x[i] = dx * i + start[0];
 			for(int j = 0; j <= ny; j++){
 				y[j] = dy * j + start[1];
-				vector d = new vector(x[i], y[j]);
-				F[i, j] = f(d);
-				WriteLine($"{x[i]} {y[j]} {F[i,j]}");
 			}
 		}
+		for(int i = 0; i <= nx; i++){
+                        for(int j = 0; j <= ny; j++){
+                                vector d = new vector(x[i], y[j]);
+                                F[i, j] = f(d);
+                                px = x[i];
+                                py = y[j];
+                                ans = splines.Interpolate(x,y,F,px,py);
+                                WriteLine($"{x[i]} {y[j]} {F[i,j]} {ans}");
+                        }
+                }
 
 		WriteLine("\n");
-		double ans;
-		for(int i = 0; i <= nx; i++){
-			for(int j = 0; j <= ny; j++){
-				px = (x[i]);
-				py = (y[j]);
-				ans = splines.Interpolate(x,y,F,px,py);
-				WriteLine($"{x[i]} {y[j]} {ans}");
+/*
+
+		double[] x1 = { 1, 2, 3, 4 };
+		double[] y1 = { 1, 2, 3 };
+		matrix F1 = new matrix(4,3);
+		for(int i = 0; i <= 3; i++){
+			for(int j = 0; j <= 2; j++){
+				F1[i,j] = x1[i] * y1[j];
 			}
 		}
+		F1.print();
+		// Test case 1: Interpolate at point (2.5, 1.5)
+		double result1 = splines.Interpolate(x1, y1, F1, 2.5, 1.5);
+		double expected1 = 3.75;
+		Console.WriteLine($"Test case 1: Result = {result1}, Expected = {expected1}, Passed = {result1 == expected1}");
+
+		// Test case 2: Interpolate at point (3.7, 2.2)
+		double result2 = splines.Interpolate(x1, y1, F1, 3.7, 2.2);
+		double expected2 = 8.14;
+		Console.WriteLine($"Test case 2: Result = {result2}, Expected = {expected2}, Passed = {result2 == expected2}");
+
+		double result3 = splines.Interpolate(x, y, F, 0, 0);
+		double expected3 = 1;
+		Console.WriteLine($"Test case 3: Result = {result3}, Expected = {expected3}, Passed = {result3 == expected3}");
 
 
-
-		/*
-		   var separators = new char[] { ' ', '\t' };
-		   var options = StringSplitOptions.RemoveEmptyEntries;
-		   string line;
-		   int sum = 0;
-		   do
-		   {
-		   sum++;
-		   line = Console.ReadLine();
-		//throw new ArgumentException($"After sum++ and line, {sum}");
-		if (line == null) break;
-		string[] words = line.Split(separators, options);
-		if (words.Length >= 3)
-		{
-		WriteLine("In the loop");
-		xs.add(double.Parse(words[0]));
-		ys.add(double.Parse(words[1]));
-		Fs.add(double.Parse(words[2]));}
-		else
-		{
-		WriteLine("Invalid input. Please provide values for x, y, and f separated by spaces.");
-		}
-		if(sum > 10) throw new ArgumentException("Too many times");
-		} while (true);
-
-		/*for(int i = 0; i <= nx; i++){
-		xs.add(dx * i + start[0]);
-		ys.add(dy * j + start[1]);
-		}
-
-		for(int i = 0; i <= nx; i++){
-		int j = 0;
-		for(j = 0; j <= ny; j++){
-		x[i] = dx * i + start[0];
-		y[j] = dy * j + start[1];
-
-		}
-		}
-		*/
+*/
 		WriteLine("\n Wish me luck :)");
 		return 0;
 	}

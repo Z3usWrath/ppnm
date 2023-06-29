@@ -20,23 +20,20 @@ plot.gpi :
 		set xlabel 'x' \n\
 		set ylabel 'y' \n\
 		set zlabel 'f' \n\
-		set xrange [-2:2] \n\
-		set yrange [-2:2] \n\
-		set zrange [0:1] \n\
 		set xzeroaxis \n\
 		set yzeroaxis \n\
 		set zzeroaxis \n\
 		set samples 1600 \n\
-		set dgrid3d 10,10 \n\
+		set dgrid3d 30,30 \n\
 		set ticslevel 0 \n\
 		set hidden3d \n\
-		splot 'plot.data' using (\$$1):(\$$2):(\$$3) index 0 with lines title 'Linearly Interpulated points',\
-		'plot.data' using (\$$1):(\$$2):(\$$4) index 0 with point pointtype 2 title 'Graph',\
-		(1/(x**2+y**2+1)) title 'the func' \n\
+		splot 'plot.data' using (\$$1):(\$$2):(\$$3) index 0 with point pointtype 4 title 'Linearly Interpulated points',\
+		'plot.data' using (\$$1):(\$$2):(\$$3) index 0 with point pointtype 4 title 'Linearly Interpulated points',\
+		1/(x**2+y**2+1) title 'the func' \n\
 		" > $@
 
 
-matlib.dll: $(DIR)/matrix.cs $(DIR)/vector.cs $(GEN)/genlist.cs splines.cs
+matlib.dll: $(DIR)/matrix.cs $(DIR)/vector.cs $(GEN)/genlist.cs
 	mcs -target:library -out:$@ $^
 
 main.exe: main.cs matlib.dll

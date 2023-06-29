@@ -5,11 +5,15 @@ set terminal svg
 	set xlabel 'x' 
 	set ylabel 'y' 
 	set zlabel 'f' 
+	set xrange [-2:2] 
+	set yrange [-2:2] 
+	set zrange [0:1] 
 	set xzeroaxis 
 	set yzeroaxis 
 	set zzeroaxis 
 	set samples 1600 
 	set dgrid3d 10,10 
+	set ticslevel 0 
 	set hidden3d 
-	splot 'plot.data' using ($1):($2):($3) index 0 with lines title 'Linearly Interpulated points',	'plot.data' using ($1):($2):($3) index 1 with point pointtype 2 title 'Graph',	((x**2+y**2+1)) title 'the func' 
+	splot 'plot.data' using ($1):($2):($3) index 0 with lines title 'Linearly Interpulated points',	'plot.data' using ($1):($2):($4) index 0 with point pointtype 2 title 'Graph',	(1/(x**2+y**2+1)) title 'the func' 
 	
