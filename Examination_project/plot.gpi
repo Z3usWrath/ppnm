@@ -1,10 +1,10 @@
 set terminal svg 
 	set output 'plot.svg' 
 	set key top right 
-	set title 'Bi linear splines of F' 
+	set title 'Bi linear splines of 1/(1+x^2+y^2)' 
 	set xlabel 'x' 
 	set ylabel 'y' 
-	set zlabel 'f' 
+	set zlabel 'Function' 
 	set xrange [-2:2] 
 	set yrange [-2:2] 
 	set zrange [0:1] 
@@ -12,8 +12,7 @@ set terminal svg
 	set yzeroaxis 
 	set zzeroaxis 
 	set samples 1600 
-	set dgrid3d 10,10 
 	set ticslevel 0 
 	set hidden3d 
-	splot 'plot.data' using ($1):($2):($3) index 0 with lines title 'Linearly Interpulated points',	'plot.data' using ($1):($2):($4) index 0 with point pointtype 2 title 'Graph',	(1/(x**2+y**2+1)) title 'the func' 
+	splot 'plot.data' using ($1):($2):($3) index 0 with lines title 'Sampled points',	'plot.data' using ($1):($2):($4) index 0 with point pointtype 2 title 'Linearly Interpulated points',	(1/(x**2+y**2+1)) title 'Gnuplot function' 
 	
